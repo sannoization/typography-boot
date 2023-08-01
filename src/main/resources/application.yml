@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    #    type: org.apache.tomcat.jdbc.pool.DataSource
+    password: 1
+    validation-query: SELECT 1
+    username: admin
+    url: jdbc:postgresql://${spring.datasource.database.host}:${spring.datasource.database.port}/${spring.datasource.database.name}
+    #    url: "jdbc:postgresql://localhost:5432/"
+    database:
+      host: localhost
+      port: 5432
+      name: typography

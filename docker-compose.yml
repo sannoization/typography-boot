@@ -1,0 +1,14 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: "typography"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "1"
+    volumes:
+      - ~/develop/typography/src/main/resources/dbinit:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+#      - "5432:5435"
+#      - "5435:5432"
