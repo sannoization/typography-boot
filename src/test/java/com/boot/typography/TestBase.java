@@ -1,7 +1,6 @@
 package com.boot.typography;
 
-import com.boot.typography.data.Employee;
-import com.boot.typography.dto.EmployeeDto;
+import com.boot.typography.repository.CustomerRepository;
 import com.boot.typography.repository.EmployeeRepository;
 import com.boot.typography.service.DtoConversionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +18,9 @@ public class TestBase {
 
     @Autowired
     protected EmployeeRepository employeeRepository;
+
+    @Autowired
+    protected CustomerRepository customerRepository;
 
     @Autowired
     protected MockMvc mockMvc;
@@ -48,20 +50,12 @@ public class TestBase {
     @BeforeAll
     public void initData() {
 
-        EmployeeDto employee1Dto = EmployeeDto.builder()
-                .firstName("alex")
-                .lastName("buhalex")
-                .phone("9995553535")
-                .email("email@email.com")
-                .build();
-
-        Employee entity1 = conversionService.convert(employee1Dto, Employee.class);
-        employeeRepository.save(entity1);
     }
 
     @AfterEach
     public void clearData() {
         employeeRepository.deleteAll();
+        customerRepository.deleteAll();
     }
 
 }

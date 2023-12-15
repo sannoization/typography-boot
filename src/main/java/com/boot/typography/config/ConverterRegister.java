@@ -1,5 +1,7 @@
 package com.boot.typography.config;
 
+import com.boot.typography.conversion.CustomerDtoToEntityConverter;
+import com.boot.typography.conversion.CustomerToDtoConverter;
 import com.boot.typography.conversion.EmployeeDtoToEntityConverter;
 import com.boot.typography.conversion.EmployeeToDtoConverter;
 import com.boot.typography.service.DtoConversionService;
@@ -18,6 +20,8 @@ public class ConverterRegister implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         conversionService.addConverter(new EmployeeDtoToEntityConverter());
         conversionService.addConverter(new EmployeeToDtoConverter());
+        conversionService.addConverter(new CustomerToDtoConverter());
+        conversionService.addConverter(new CustomerDtoToEntityConverter());
     }
 
 }
