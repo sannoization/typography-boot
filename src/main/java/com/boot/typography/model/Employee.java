@@ -1,4 +1,4 @@
-package com.boot.typography.data;
+package com.boot.typography.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,13 +16,13 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name = "customer", schema = "typography")
+@Table(name = "employee", schema = "typography")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Customer {
+public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +39,4 @@ public class Customer {
 
     @Column(name = "email")
     private String email;
-
 }

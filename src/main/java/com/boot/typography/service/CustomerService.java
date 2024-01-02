@@ -1,7 +1,7 @@
 package com.boot.typography.service;
 
 
-import com.boot.typography.data.Customer;
+import com.boot.typography.model.Customer;
 import com.boot.typography.dto.CustomerDto;
 import com.boot.typography.repository.CustomerRepository;
 import java.util.List;

@@ -1,5 +1,5 @@
 package com.boot.typography.conversion;
-import com.boot.typography.data.Employee;
+import com.boot.typography.model.Employee;
 import com.boot.typography.dto.EmployeeDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.boot.typography.conversion;
 
-import com.boot.typography.data.Customer;
+import com.boot.typography.model.Customer;
 import com.boot.typography.dto.CustomerDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.boot.typography.repository;
 
-import com.boot.typography.data.Customer;
+import com.boot.typography.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

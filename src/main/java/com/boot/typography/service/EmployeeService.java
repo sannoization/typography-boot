@@ -1,6 +1,6 @@
 package com.boot.typography.service;
 
-import com.boot.typography.data.Employee;
+import com.boot.typography.model.Employee;
 import com.boot.typography.dto.EmployeeDto;
 import com.boot.typography.repository.EmployeeRepository;
 import java.util.List;
