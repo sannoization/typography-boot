@@ -7,9 +7,9 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     #    type: org.apache.tomcat.jdbc.pool.DataSource
+    username: admin
     password: 1
     validation-query: SELECT 1
-    username: admin
     url: jdbc:postgresql://${spring.datasource.database.host}:${spring.datasource.database.port}/${spring.datasource.database.name}
     #    url: "jdbc:postgresql://localhost:5432/"
     database:

@@ -1,9 +1,6 @@
 package com.boot.typography.config;
 
-import com.boot.typography.conversion.CustomerDtoToEntityConverter;
-import com.boot.typography.conversion.CustomerToDtoConverter;
-import com.boot.typography.conversion.EmployeeDtoToEntityConverter;
-import com.boot.typography.conversion.EmployeeToDtoConverter;
+import com.boot.typography.conversion.*;
 import com.boot.typography.service.DtoConversionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +19,10 @@ public class ConverterRegister implements WebMvcConfigurer {
         conversionService.addConverter(new EmployeeToDtoConverter());
         conversionService.addConverter(new CustomerToDtoConverter());
         conversionService.addConverter(new CustomerDtoToEntityConverter());
+        conversionService.addConverter(new GoodsDtoToEntityConverter());
+        conversionService.addConverter(new GoodsToDtoConverter());
+        conversionService.addConverter(new OrderToDtoConverter());
+        conversionService.addConverter(new OrderDtoToEntityConverter());
     }
 
 }

@@ -7,8 +7,6 @@ services:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "1"
     volumes:
-      - ~/develop/typography/src/main/resources/dbinit:/docker-entrypoint-initdb.d
+      - ${PATH_TO_SQL}:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
-#      - "5432:5435"
-#      - "5435:5432"

@@ -1,12 +1,13 @@
 package com.boot.typography.service;
 
 
-import com.boot.typography.model.Customer;
 import com.boot.typography.dto.CustomerDto;
+import com.boot.typography.model.Customer;
 import com.boot.typography.repository.CustomerRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +27,12 @@ public class CustomerService {
     }
 
     public CustomerDto updateCustomer(CustomerDto customerDto) {
-        Customer entity = conversionService.convert(customerDto, Customer.class);
-        Customer result = customerRepository.saveAndFlush(entity);
+        Customer found = customerRepository.findById(customerDto.getId()).orElseThrow();
+        found.setFirstName(customerDto.getFirstName());
+        found.setLastName(customerDto.getLastName());
+        found.setEmail(customerDto.getEmail());
+        found.setPhone(customerDto.getPhone());
+        Customer result = customerRepository.saveAndFlush(found);
         return conversionService.convert(result, CustomerDto.class);
     }
 
