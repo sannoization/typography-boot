@@ -21,7 +21,7 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "first_name")

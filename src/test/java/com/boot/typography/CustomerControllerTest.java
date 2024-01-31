@@ -1,13 +1,6 @@
 package com.boot.typography;
 
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.boot.typography.dto.CustomerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -18,18 +11,25 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.springframework.test.annotation.DirtiesContext.ClassMode;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @Slf4j
 @AutoConfigureMockMvc
 @TestInstance(Lifecycle.PER_CLASS)
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 class CustomerControllerTest extends TestBase {
 
     @Test
     void createAndGetCustomerById() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -66,6 +66,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndGetAllCustomers() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -83,6 +84,7 @@ class CustomerControllerTest extends TestBase {
                 .andReturn();
 
         customerDto = CustomerDto.builder()
+                .id(2)
                 .phone("8005553535")
                 .email("vasya@t.ru")
                 .firstName("Vasia")
@@ -140,6 +142,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndUpdateCustomer() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -175,6 +178,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndDeleteCustomer() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")

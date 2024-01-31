@@ -1,13 +1,6 @@
 package com.boot.typography;
 
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.boot.typography.dto.EmployeeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -20,6 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @SpringBootTest
 @Slf4j
@@ -30,6 +27,7 @@ class EmployeeControllerTest extends TestBase {
     @Test
     void createAndGetEmployeeById() throws Exception {
         EmployeeDto employeeDto = EmployeeDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -66,6 +64,7 @@ class EmployeeControllerTest extends TestBase {
     @Test
     void createAndGetAllEmployees() throws Exception {
         EmployeeDto employeeDto = EmployeeDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -83,6 +82,7 @@ class EmployeeControllerTest extends TestBase {
                 .andReturn();
 
         employeeDto = EmployeeDto.builder()
+                .id(2)
                 .phone("8005553535")
                 .email("vasya@t.ru")
                 .firstName("Vasia")
@@ -140,6 +140,7 @@ class EmployeeControllerTest extends TestBase {
     @Test
     void createAndUpdateEmployee() throws Exception {
         EmployeeDto employeeDto = EmployeeDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -175,6 +176,7 @@ class EmployeeControllerTest extends TestBase {
     @Test
     void createAndDeleteEmployee() throws Exception {
         EmployeeDto employeeDto = EmployeeDto.builder()
+                .id(1)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")

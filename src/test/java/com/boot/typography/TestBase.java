@@ -1,11 +1,9 @@
 package com.boot.typography;
 
-import com.boot.typography.repository.CustomerRepository;
-import com.boot.typography.repository.EmployeeRepository;
+import com.boot.typography.repository.*;
 import com.boot.typography.service.DtoConversionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.io.IOException;
+
 public class TestBase {
 
     @Autowired
@@ -21,6 +21,15 @@ public class TestBase {
 
     @Autowired
     protected CustomerRepository customerRepository;
+
+    @Autowired
+    protected OrderToCustomerRepository orderToCustomerRepository;
+
+    @Autowired
+    protected GoodsRepository goodsRepository;
+
+    @Autowired
+    protected OrderRepository orderRepository;
 
     @Autowired
     protected MockMvc mockMvc;

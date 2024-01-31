@@ -23,6 +23,8 @@ public class ConverterRegister implements WebMvcConfigurer {
         conversionService.addConverter(new GoodsToDtoConverter());
         conversionService.addConverter(new OrderToDtoConverter());
         conversionService.addConverter(new OrderDtoToEntityConverter());
+        conversionService.addConverter(new OrderToCustomerToEntityConverter());
+        conversionService.addConverter(new OrderToCustomerToDtoConverter());
     }
 
 }
