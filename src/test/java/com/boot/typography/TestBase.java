@@ -1,18 +1,24 @@
 package com.boot.typography;
 
-import com.boot.typography.repository.*;
+import com.boot.typography.repository.CustomerRepository;
+import com.boot.typography.repository.EmployeeRepository;
+import com.boot.typography.repository.GoodsRepository;
+import com.boot.typography.repository.OrderRepository;
+import com.boot.typography.repository.OrderToCustomerRepository;
 import com.boot.typography.service.DtoConversionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.io.IOException;
 
 public class TestBase {
 
@@ -40,6 +46,12 @@ public class TestBase {
     @Autowired
     protected ObjectMapper objectMapper;
 
+    @Autowired
+    protected DataSource dataSource;
+
+    @Value("classpath:initTest.sql")
+    protected Resource resource;
+
     protected String json(Object object) throws JsonProcessingException {
         return objectMapper.writeValueAsString(object);
     }
@@ -57,14 +69,15 @@ public class TestBase {
     }
 
     @BeforeAll
-    public void initData() {
+    public void initData() throws Exception {
+        ScriptUtils.executeSqlScript(dataSource.getConnection(), resource);
 
     }
-
-    @AfterEach
-    public void clearData() {
-        employeeRepository.deleteAll();
-        customerRepository.deleteAll();
-    }
+// for debug each test only
+//    @AfterAll
+//    public void clearData() {
+//        employeeRepository.deleteAll();
+//        customerRepository.deleteAll();
+//    }
 
 }

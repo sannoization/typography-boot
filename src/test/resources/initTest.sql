@@ -47,17 +47,17 @@ create table typography.order_to_customer
     primary key (customer_id, order_id)
 );
 
-insert into typography.employee (first_name, last_name, phone, email)
-values ('alex', 'sorokov', '9995553322', 'sorok@mail.ru');
+insert into typography.employee (id, first_name, last_name, phone, email)
+values (0, 'alex', 'sorokov', '9995553322', 'sorok@mail.ru');
 
-insert into typography.customer (first_name, last_name, phone, email)
-values ('kirill', 'tulin', '9601234545', 'kirill@ko.ru');
+insert into typography.customer (id, first_name, last_name, phone, email)
+values (1, 'kirill', 'tulin', '9601234545', 'kirill@ko.ru');
 
 insert into typography.goods (id, good_name, good_cost, amount, material, good_options)
 values (1, 'print', 200, 5, 'paper', 'option');
 
 insert into typography.order (id, date_start, date_end, employee, goods)
-values (1, '2007-12-03 10:15:30.000000', '2007-12-03 10:15:30.000000', 1, 1);
+values (1, '2007-12-03 10:15:30.000000', '2007-12-03 10:15:30.000000', 0, 1);
 
 insert into typography.order_to_customer (customer_id, order_id)
-values (2, 1);
+values (1, 1);

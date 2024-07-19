@@ -1,7 +1,15 @@
 package com.boot.typography;
 
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.boot.typography.dto.CustomerDto;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.junit.jupiter.api.Assertions;
@@ -10,31 +18,30 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MvcResult;
-
-import static org.springframework.test.annotation.DirtiesContext.ClassMode;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @Slf4j
 @AutoConfigureMockMvc
 @TestInstance(Lifecycle.PER_CLASS)
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
+@Import(TestcontainersConfiguration.class)
 class CustomerControllerTest extends TestBase {
 
     @Test
+    @Transactional
     void createAndGetCustomerById() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
-                .id(1)
+                .id(2)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
                 .lastName("Vladov")
                 .build();
+
+        var list = employeeRepository.findAll();
+        Assertions.assertNotNull(list);
 
         MvcResult result = mockMvc.perform(
                         post("/customer").content(json(customerDto)).contentType(MediaType.APPLICATION_JSON))
@@ -66,7 +73,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndGetAllCustomers() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
-                .id(1)
+                .id(0)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -84,7 +91,7 @@ class CustomerControllerTest extends TestBase {
                 .andReturn();
 
         customerDto = CustomerDto.builder()
-                .id(2)
+                .id(0)
                 .phone("8005553535")
                 .email("vasya@t.ru")
                 .firstName("Vasia")
@@ -142,7 +149,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndUpdateCustomer() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
-                .id(1)
+                .id(3)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
@@ -178,7 +185,7 @@ class CustomerControllerTest extends TestBase {
     @Test
     void createAndDeleteCustomer() throws Exception {
         CustomerDto customerDto = CustomerDto.builder()
-                .id(1)
+                .id(4)
                 .phone("0001110101")
                 .email("v@t.org")
                 .firstName("Vlad")
